@@ -1,5 +1,7 @@
 package managers;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
@@ -7,6 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import dataProviders.ConfigFileReader;
 import enums.DriverType;
@@ -45,7 +48,35 @@ public class WebDriverManager {
 	}
 	
 	private WebDriver createRemoteDriver() {
-		throw new RuntimeException("RemoteWebDriver is not yet implemented");
+		switch (driverType) {
+		case FIREFOX: 
+			throw new RuntimeException("FireFoxRemoteDriver is not yet implemented");
+		case CHROME:
+			System.setProperty(CHROME_DRIVER_PROPERTY, configFileReader.getDriverPath());
+			ChromeOptions chromeOptions = new ChromeOptions();
+			chromeOptions.addArguments("--incognito");
+			
+			if(configFileReader.isHeadlessMode()) {
+				chromeOptions.addArguments("--headless");
+				chromeOptions.addArguments("--disable-gpu");
+			}
+
+			if (configFileReader.isBrowserMaximumSize()) {
+				chromeOptions.addArguments("--window-size=1920,1080");			
+			}
+			
+			try {
+				driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), chromeOptions);
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
+			driver.manage().deleteAllCookies();
+			driver.manage().timeouts().implicitlyWait(configFileReader.getImplicitlyWait(), TimeUnit.SECONDS);
+			break;
+		case EDGE: 
+			throw new RuntimeException("EdgeRemoteDriver is not yet implemented");
+		}
+		return driver;
 	}
 	
 	private WebDriver createCloudDriver() {
@@ -61,10 +92,17 @@ public class WebDriverManager {
 			System.setProperty(CHROME_DRIVER_PROPERTY, configFileReader.getDriverPath());
 			ChromeOptions chromeOptions = new ChromeOptions();
 			chromeOptions.addArguments("--incognito");
-			driver = new ChromeDriver(chromeOptions);
-			if (configFileReader.isBrowserMaximumSize()) {
-				driver.manage().window().maximize();				
+			
+			if(configFileReader.isHeadlessMode()) {
+				chromeOptions.addArguments("--headless");
+				chromeOptions.addArguments("--disable-gpu");
 			}
+
+			if (configFileReader.isBrowserMaximumSize()) {
+				chromeOptions.addArguments("--window-size=1920,1080");			
+			}
+			
+			driver = new ChromeDriver(chromeOptions);
 			driver.manage().deleteAllCookies();
 			driver.manage().timeouts().implicitlyWait(configFileReader.getImplicitlyWait(), TimeUnit.SECONDS);
 			break;
