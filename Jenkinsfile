@@ -12,6 +12,10 @@ pipeline {
                 sh 'mvn clean package -DskipTests'
             }
         }
+        stage('Initialize') {
+            def dockerHome = tool 'docker-desktop'
+            env.PATH = "${dockerHome}/bin:${env.PATH}"
+        }
         stage('Build Image') {
             steps {
                 script {
