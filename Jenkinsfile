@@ -5,8 +5,12 @@ pipeline {
     }
     stages {
         stage('Initialize') {
-            def dockerHome = tool 'docker-desktop'
-            env.PATH = "${dockerHome}/bin:${env.PATH}"
+            steps {
+                script {            
+                    def dockerHome = tool 'docker-desktop'
+                    env.PATH = "${dockerHome}/bin:${env.PATH}"
+                }
+            }
         }
         stage('Build Jar') {
             agent {
