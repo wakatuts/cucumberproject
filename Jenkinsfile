@@ -4,7 +4,7 @@ pipeline {
         ENV_NAME = "${env.BRANCH_NAME}"
     }
     tools {
-        maven 'Maven 3.5.4' 
+        maven 'Maven 3.6.3' 
     }
     stages {
         stage('Initialize') {
