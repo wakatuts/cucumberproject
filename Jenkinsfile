@@ -1,5 +1,9 @@
 pipeline {
     agent none
+    environment {
+        ENV_NAME = "${env.BRANCH_NAME}"
+        echo "Testing the ${ENV_NAME}"
+    }
     stages {
         stage('Initialize') {
             def dockerHome = tool 'docker-desktop'
