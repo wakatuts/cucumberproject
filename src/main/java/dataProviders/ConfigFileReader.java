@@ -101,4 +101,14 @@ public class ConfigFileReader {
 		String isHeadlessMode = properties.getProperty("isHeadlessMode");
 		return Boolean.parseBoolean(isHeadlessMode);
 	}
+	
+	public String getHostName() {
+		
+		String hostName = properties.getProperty("hostName");
+		if (hostName != null) {
+			return hostName;
+		} else {
+			throw new RuntimeException("hostName not specified in the Configuration.properties file");
+		}
+	}
 }

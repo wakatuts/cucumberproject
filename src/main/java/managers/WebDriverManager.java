@@ -48,6 +48,7 @@ public class WebDriverManager {
 	}
 	
 	private WebDriver createRemoteDriver() {
+		String hostName = configFileReader.getHostName();
 		switch (driverType) {
 		case FIREFOX: 
 			throw new RuntimeException("FireFoxRemoteDriver is not yet implemented");
@@ -66,7 +67,7 @@ public class WebDriverManager {
 			}
 			
 			try {
-				driver = new RemoteWebDriver(new URL("http://127.0.0.1:4444/wd/hub"), chromeOptions);
+				driver = new RemoteWebDriver(new URL("http://"+hostName+"/:4444/wd/hub"), chromeOptions);
 			} catch (MalformedURLException e) {
 				e.printStackTrace();
 			}
