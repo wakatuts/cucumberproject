@@ -67,7 +67,7 @@ public class WebDriverManager {
 			}
 			
 			try {
-				driver = new RemoteWebDriver(new URL("http://"+hostName+"/:4444/wd/hub"), chromeOptions);
+				driver = new RemoteWebDriver(new URL("http://"+hostName+":4444/wd/hub"), chromeOptions);
 			} catch (MalformedURLException e) {
 				e.printStackTrace();
 			}
