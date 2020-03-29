@@ -4,9 +4,15 @@ node {
    }
    stage('Test') {
         try {
-            sh "mvn clean install"
+            sh "mvn verify"
         } catch (err) {
             
+        } finally {
+            publishHTML (target: [
+            reportDir: 'target/cucumber-reports',
+            reportFiles: 'index.html',
+            reportName: "Cucumber tests report"
+            ])
         }
    }
    stage('Results') {
