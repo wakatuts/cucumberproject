@@ -10,6 +10,6 @@ node {
         }
    }
    stage('Results') {
-      junit '**/target/failsafe-reports/*.xml'
+      junit '**/target/surefire-reports/*.xml'
    }
 }
