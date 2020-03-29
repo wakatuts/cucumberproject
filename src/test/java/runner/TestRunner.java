@@ -6,7 +6,7 @@ import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = {"src\\test\\resources\\functionalTests"},
+@CucumberOptions(features = {"src/test/resources/functionalTests"},
 				 glue = {"stepDefinition"},
 				 monochrome = true,
 				 plugin = {"pretty", "html:target/cucumber-reports"})
