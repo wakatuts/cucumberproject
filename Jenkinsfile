@@ -11,7 +11,8 @@ node {
             publishHTML (target: [
             reportDir: 'target/cucumber-reports',
             reportFiles: 'index.html',
-            reportName: "Cucumber tests report"
+            reportName: "Cucumber tests report",
+            includes: '**/*'
             ])
         }
    }
