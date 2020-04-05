@@ -9,7 +9,7 @@ node {
             
         } finally {
             publishHTML (target: [
-            reportDir: 'target/cucumber-reports',
+            reportDir: 'target/pretty-cucumber',
             reportFiles: 'report-feature*.html',
             reportName: "Cucumber tests report",
             includes: '**/*'
