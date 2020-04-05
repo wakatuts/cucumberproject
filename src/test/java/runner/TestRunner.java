@@ -9,7 +9,8 @@ import io.cucumber.junit.CucumberOptions;
 @CucumberOptions(features = {"src/test/resources/functionalTests"},
 				 glue = {"stepDefinition"},
 				 monochrome = true,
-				 plugin = {"pretty", "html:target/cucumber-reports"})
+				 //plugin = {"pretty", "html:target/cucumber-reports"}
+				 plugin = {"pretty", "json:target/report.json", "de.monochromata.cucumber.report.PrettyReports:target/pretty-cucumber"})
 
 public class TestRunner {
 

@@ -111,4 +111,14 @@ public class ConfigFileReader {
 			throw new RuntimeException("hostName not specified in the Configuration.properties file");
 		}
 	}
+	
+	public String getCucumberConfigFile() {
+		
+		String cucumberConfigFile = properties.getProperty("cucumberConfigFile");
+		if (cucumberConfigFile != null) {
+			return cucumberConfigFile;
+		} else {
+			throw new RuntimeException("cucumberConfigFile not specified in the Configuration.properties file");
+		}
+	}
 }

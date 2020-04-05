@@ -51,7 +51,7 @@
     <dependency>
     	<groupId>org.apache.maven.plugins</groupId>
    	 	<artifactId>maven-surefire-plugin</artifactId>
-   	 	<version>2.22.1</version>
+   	 	<version>3.0.0-M4</version>
 	</dependency>  
   	<dependency>
     	<groupId>org.seleniumhq.selenium</groupId>
@@ -116,7 +116,23 @@
     	<artifactId>cucumber-picocontainer</artifactId>
     	<version>5.4.0</version>
     	<scope>test</scope>
-	</dependency>	
+	</dependency>
+	<dependency>
+  		<groupId>de.monochromata.cucumber</groupId>
+  		<artifactId>reporting-plugin</artifactId>
+  		<version>4.0.40</version>
+	</dependency>
+	    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>1.6.6</version>
+    </dependency>
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-simple</artifactId>
+        <version>1.6.6</version>
+    </dependency>
+	
  		
   </dependencies>
 </project>
